@@ -13909,6 +13909,10 @@ var app = new Vue({
   el: '#app'
 });
 
+$(document).ready(function () {
+  console.log("ready!");
+});
+
 /***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {

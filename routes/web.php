@@ -1,12 +1,21 @@
 <?php
 
-$this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function(){    
-    $this->get('/', 'AdminController@index')->name('admin.home');
+// User Routes
+Route::group(['namespace' => 'User'], function(){
+    Route::get('/', 'HomeController@index');
+    
+    Route::get('post', 'PostController@index')->name('post');
 });
 
-$this->post('atualizar-perfil', 'Admin\UserController@profileUpdate')->name('profile.update')->middleware('auth');
-$this->get('meu-perfil', 'Admin\UserController@profile')->name('profile')->middleware('auth');
+// Admin Routes
+Route::group(['namespace' => 'Admin'], function(){
+    Route::get('admin/home', 'HomeController@index')->name('admin.home');
 
-$this->get('/', 'Site\SiteController@index')->name('home');
+    Route::resource('admin/user', 'UserController');
 
-Auth::routes();
+    Route::resource('admin/post', 'PostController');
+
+    Route::resource('admin/tag', 'TagController');
+
+    Route::resource('admin/category', 'CategoryController');
+});
