@@ -7,9 +7,9 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-# Laravel
+# Laravel blog
 
-Aplicação em Laravel v5.7 para iniciar um projeto com o laravel.
+Um site de Blog completo em Laravel v5.7
 
 ## Requisitos
 - [Git](https://git-scm.com/)
@@ -22,9 +22,9 @@ Aplicação em Laravel v5.7 para iniciar um projeto com o laravel.
 1. Efetuar a instalação clonando ou baixando do repositorio.
 
     ```bash 
-    git clone git@github.com:CodeSiteBr/laravel.git
+    git clone git@github.com:CodeSiteBr/laravel-blog.git
     ```
-    ou baixar do repositorio [laravel](https://github.com/CodeSiteBr/laravel/archive/master.zip)
+    ou baixar do repositorio [laravel](https://github.com/CodeSiteBr/laravel-blog/archive/master.zip)
 
 2. Entrar na pasta do projeto, execute:
     ```bash
