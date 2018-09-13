@@ -86,7 +86,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = post::find($id);
+        $post = post::with('tags', 'categories')->find($id);
         $tags = tag::all();
         $categories = category::all();
 

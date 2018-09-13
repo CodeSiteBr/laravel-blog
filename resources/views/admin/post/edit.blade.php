@@ -74,7 +74,13 @@
                                     <label>Select Tags</label>
                                     <select name="tags[]" class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
                                         @foreach ($tags as $tag)
-                                            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                            <option value="{{ $tag->id }}"
+                                                @foreach ($post->tags as $postTag)
+                                                    @if ($postTag->id == $tag->id)
+                                                        selected
+                                                    @endif
+                                                @endforeach
+                                            >{{ $tag->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -82,7 +88,13 @@
                                     <label>Select Category</label>
                                     <select name="categories[]" class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}"
+                                                @foreach ($post->categories as $postCategory)
+                                                    @if ($postCategory->id == $category->id)
+                                                        selected
+                                                    @endif
+                                                @endforeach
+                                            >{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -106,9 +118,12 @@
 
                         <!-- /.box-header -->
                         <div class="box-body pad">
-                            <textarea class="textarea" placeholder="Place some text here" name="body"
-                                    style="width: 100%; height: 500px; font-size: 14px; line-height: 18px;
-                                        border: 1px solid #dddddd; padding: 10px;">{{ $post->body }}</textarea>
+                            <textarea
+                                name="body"
+                                id="editor1"
+                                style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                                {{ $post->body }}
+                            </textarea>
                         </div>
                         </div>
 
@@ -131,9 +146,15 @@
 
 @section('footerSection')
     <script src="{{ asset('admin/plugins/select2/select2.min.js') }}"></script>
-
+    <script src="//cdn.ckeditor.com/4.10.1/full/ckeditor.js"></script>
     <script>
-        $(function(){
+        $(function () {
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            CKEDITOR.replace('editor1');
+            //bootstrap WYSIHTML5 - text editor
+            $(".textarea").wysihtml5();
+
             $('.select2').select2();
         });
 

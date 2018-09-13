@@ -15,10 +15,11 @@ class CreateCategoryPostsTable extends Migration
     {
         Schema::create('category_posts', function (Blueprint $table) {
             $table->integer('post_id')->unsigned()->index();
-            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->integer('category_id')->unsigned()->index();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
+
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

@@ -105,8 +105,11 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body pad">
-                            <textarea class="textarea" placeholder="Place some text here" name="body"
-                                style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                            <textarea
+                                name="body"
+                                id="editor1"
+                                style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                            </textarea>
                         </div>
                         </div>
 
@@ -129,9 +132,16 @@
 
 @section('footerSection')
     <script src="{{ asset('admin/plugins/select2/select2.min.js') }}"></script>
+    <script src="//cdn.ckeditor.com/4.10.1/full/ckeditor.js"></script>
 
     <script>
-        $(function(){
+        $(function () {
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            CKEDITOR.replace('editor1');
+            //bootstrap WYSIHTML5 - text editor
+            $(".textarea").wysihtml5();
+
             $('.select2').select2();
         });
 

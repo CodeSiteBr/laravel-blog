@@ -3,8 +3,8 @@
 // User Routes
 Route::group(['namespace' => 'User'], function(){
     Route::get('/', 'HomeController@index');
-    
-    Route::get('post', 'PostController@index')->name('post');
+
+    Route::get('post/{post}', 'PostController@post')->name('post');
 });
 
 // Admin Routes
@@ -19,3 +19,7 @@ Route::group(['namespace' => 'Admin'], function(){
 
     Route::resource('admin/category', 'CategoryController');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
