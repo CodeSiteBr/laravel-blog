@@ -16,8 +16,6 @@ class HomeController extends Controller
         return view('user.blog', compact('posts'));
     }
 
-
-
     public function tag(tag $tag){
         $posts = $tag->posts();
         return view('user.blog', compact('posts'));
