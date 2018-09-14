@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('headSection')
-<link rel="stylesheet" href="{{ asset('admin/plugins/datatables/dataTables.bootstrap.css') }}">
+<link rel="stylesheet" href="{{ asset('adm/plugins/datatables/dataTables.bootstrap.css') }}">
 @endsection
 
 @section('main-content')
@@ -118,8 +118,8 @@
 @endsection
 
 @section('footerSection')
-    <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('admin/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('adm/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('adm/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
     <script>
     $(function () {
         $("#example1").DataTable();

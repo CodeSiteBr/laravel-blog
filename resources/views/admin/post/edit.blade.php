@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('headSection')
-<link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('adm/plugins/select2/select2.min.css') }}">
 @endsection
 
 @section('main-content')
@@ -147,8 +147,8 @@
 @endsection
 
 @section('footerSection')
-<script src="{{ asset('admin/plugins/select2/select2.min.js') }}"></script>
-<script src="{{ asset('admin/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('adm/plugins/select2/select2.min.js') }}"></script>
+<script src="{{ asset('adm/ckeditor/ckeditor.js') }}"></script>
 <script>
     $(function () {
         // Replace the <textarea id="editor1"> with a CKEditor
