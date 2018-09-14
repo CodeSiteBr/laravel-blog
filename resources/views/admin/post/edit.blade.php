@@ -146,7 +146,7 @@
 
 @section('footerSection')
     <script src="{{ asset('admin/plugins/select2/select2.min.js') }}"></script>
-    <script src="//cdn.ckeditor.com/4.10.1/full/ckeditor.js"></script>
+    <script src="{{ asset('admin/ckeditor/ckeditor.js') }}"></script>
     <script>
         $(function () {
             // Replace the <textarea id="editor1"> with a CKEditor
