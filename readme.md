@@ -112,7 +112,22 @@ Um site de Blog completo em Laravel v5.7
     npm run watch
     ```
 
-12. Para iniciar o servidor do laravel
+12. Alterar o dono e permissão da pasta do projeto
+    ```bash
+
+    # Com o Laradock
+
+    cd laradock
+    docker-compose exec workspace bash
+    chown -R laradock:laradock MyProject
+    chmod -R 755 MyProject/storage/
+
+    # Sem Laradock
+    sudo chown -R www-data:www-data /var/www/MyProject/
+    sudo chmod -R 755 /var/www/MyProject/storage/
+    ```
+
+13. Para iniciar o servidor do laravel
     ```bash
     php artisan serve
     ```
@@ -121,7 +136,7 @@ Um site de Blog completo em Laravel v5.7
     php artisan serve --port=300
     ```
 
-13. Agora você deve ser capaz de visitar o caminho para onde você instalou o aplicativo e ver a página inicial padrão.
+14. Agora você deve ser capaz de visitar o caminho para onde você instalou o aplicativo e ver a página inicial padrão.
  
     [localhost](http://localhost)  
     [localhost:8080](http://localhost:8080)  
