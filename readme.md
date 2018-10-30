@@ -12,23 +12,29 @@
 Um site de Blog completo em Laravel v5.7
 
 ## Requisitos
-- [Git](https://git-scm.com/)
-- [Composer](http://getcomposer.org/doc/00-intro.md)
-- [Node](https://nodejs.org/en/)
-- [MySQL](https://www.mysql.com/)
+
+-   [Git](https://git-scm.com/)
+-   [Composer](http://getcomposer.org/doc/00-intro.md)
+-   [Node](https://nodejs.org/en/)
+-   [MySQL](https://www.mysql.com/)
 
 ## Instalação
 
 1. Efetuar a instalação clonando ou baixando do repositorio.
 
-    ```bash 
+    ```bash
+    git clone https://github.com/CodeSiteBr/laravel-blog.git
+    ```
+
+    ```bash
     git clone git@github.com:CodeSiteBr/laravel-blog.git
     ```
-    ou baixar do repositorio [laravel](https://github.com/CodeSiteBr/laravel-blog/archive/master.zip)
+
+    OU Dowload [laravel-blog](https://github.com/CodeSiteBr/laravel-blog/archive/master.zip)
 
 2. Entrar na pasta do projeto, execute:
     ```bash
-    cd laravel
+    cd laravel-blog
     ```
 3. Se composer está instalado, execute:
     ```bash
@@ -58,29 +64,31 @@ Um site de Blog completo em Laravel v5.7
     ```
 
 8. Criar as tabelas com o migrate
-    
-    
+
     ```bash
     php artisan migrate
     ```
 
     Popular as tabelas
+
     ```bash
     php artisan db:seed
     ```
 
     Criar e popular as tabelas
+
     ```bash
     php artisan migrate --seed
     ```
 
-    Se precisar fazer alguma alteração nas migrates 
+    Se precisar fazer alguma alteração nas migrates
+
     ```bash
     php artisan migrate:refresh --seed
     ```
 
 9. Configurar o envio de e-mail no arquivo .env
-    
+
     Se for em desenvolvimento crie uma conta no [mailtrap](https://mailtrap.io/) e configure as linhas.
 
     ```bash
@@ -98,55 +106,62 @@ Um site de Blog completo em Laravel v5.7
     MAIL_PASSWORD=null
     MAIL_ENCRYPTION=null
     ```
+
 10. Para exibir a imagem do usuario é necessário criar um link simbolico da pasta storage/app/public para /public
+
     ```bash
     php artisan storage:link
     ```
 
-11. Se alterar os arquivos js ou sass da pasta resources/assets, é necessário, executar: 
+11. Se alterar os arquivos js ou sass da pasta resources/assets, é necessário, executar:
+
     ```bash
     npm run dev
     ```
+
     Ou
+
     ```bash
     npm run watch
     ```
 
 12. Alterar o dono e permissão da pasta do projeto
+
     ```bash
-
     # Com o Laradock
-
     cd laradock
     docker-compose exec workspace bash
-    chown -R laradock:laradock MyProject
-    chmod -R 755 MyProject/storage/
+    chown -R laradock:laradock /var/www/laravel-blog/
+    chmod -R 755 /var/www/laravel-blog/storage/
 
     # Sem Laradock
-    sudo chown -R www-data:www-data /var/www/MyProject/
-    sudo chmod -R 755 /var/www/MyProject/storage/
+    sudo chown -R www-data:www-data /var/www/laravel-blog/
+    sudo chmod -R 755 /var/www/laravel-blog/storage/
     ```
 
 13. Para iniciar o servidor do laravel
+
     ```bash
     php artisan serve
     ```
+
     Ou em uma porta específica
+
     ```bash
     php artisan serve --port=300
     ```
 
 14. Agora você deve ser capaz de visitar o caminho para onde você instalou o aplicativo e ver a página inicial padrão.
- 
+
     [localhost](http://localhost)  
-    [localhost:8080](http://localhost:8080)  
+    [localhost:8000](http://localhost:8000)  
     [localhost:300](http://localhost:300/)
 
-    > usuario: admin@exemplo.com  
-    senha: 123456 
+    > usuario: admin@admin.com  
+    > senha: 123456
 
-    > usuario: user@exemplo.com  
-    senha: 123456
+    > usuario: user@user.com  
+    > senha: 123456
 
 ## License
 
