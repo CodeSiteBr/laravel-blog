@@ -47,7 +47,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:admins',
-            'phone' => 'required|numeric|max:15',
+            'phone' => 'required|string|max:20',
             'password' => 'required|string|min:6|confirmed',
         ]);
 
@@ -96,14 +96,14 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'phone' => 'required|numeric|max:15',
+            'phone' => 'required|string|max:20',
         ]);
 
         $user = admin::where('id', $id)->update($request->except('_token', '_method', 'role'));
 
         admin::find($id)->roles()->sync($request->role);
 
-        return redirect(route('admin.user.index'))->with('success', 'User updated successfully');
+        return redirect(route('user.index'))->with('success', 'User updated successfully');
     }
 
     /**
