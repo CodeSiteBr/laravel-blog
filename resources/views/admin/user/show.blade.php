@@ -48,6 +48,7 @@
                                     <th>S.No</th>
                                     <th>User Name</th>
                                     <th>Assigned roles</th>
+                                    <th>Status</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -56,12 +57,13 @@
                                 @forelse ($users as $user)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ $user->name}}</td>
+                                    <td>{{ $user->name }}</td>
                                     <td>
                                         @foreach ($user->roles as $role)
                                             {{ $role->name }},
                                         @endforeach
                                     </td>
+                                    <td>{{ $user->status ? 'Active' : 'Not Active' }}</td>
                                     <td>
                                         <a href="{{ route('user.edit', $user->id) }}" class="fa fa-pencil" aria-hidden="true"></a>
                                     </td>
@@ -93,6 +95,7 @@
                                     <th>S.No</th>
                                     <th>User Name</th>
                                     <th>Assigned roles</th>
+                                    <th>Status</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>

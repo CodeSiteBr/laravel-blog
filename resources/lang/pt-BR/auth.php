@@ -14,4 +14,6 @@ return [
 
     'failed'   => 'Credenciais informadas não correspondem com nossos registros.',
     'throttle' => 'Você realizou muitas tentativas de login. Por favor, tente novamente em :seconds segundos.',
+    'disabled' => 'Você está desativado, entre em contato com o administrador.',
+
 ];

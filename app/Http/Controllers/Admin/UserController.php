@@ -99,6 +99,8 @@ class UserController extends Controller
             'phone' => 'required|string|max:20',
         ]);
 
+        $request->status ? : $request['status'] = 0;
+
         $user = admin::where('id', $id)->update($request->except('_token', '_method', 'role'));
 
         admin::find($id)->roles()->sync($request->role);
