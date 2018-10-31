@@ -24,8 +24,9 @@
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">Title</h3>
-
-                <a class="col-lg-offset-5 btn btn-success" href="{{ route('post.create') }}">Add new Post</a>
+                @can('posts.create', Auth::user())
+                    <a class="col-lg-offset-5 btn btn-success" href="{{ route('post.create') }}">Add new Post</a>
+                @endcan
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -49,8 +50,14 @@
                                     <th>Sub Title</th>
                                     <th>Slug</th>
                                     <th>Create At</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+
+                                    @can('posts.update', Auth::user())
+                                        <th>Edit</th>
+                                    @endcan
+
+                                    @can('posts.delete', Auth::user())
+                                        <th>Delete</th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,25 +68,31 @@
                                     <td>{{ $post->subtitle }}</td>
                                     <td>{{ $post->slug }}</td>
                                     <td>{{ $post->created_at }}</td>
-                                    <td><a href="{{ route('post.edit', $post->id) }}" class="fa fa-pencil" aria-hidden="true"></a></td>
-                                    <td>
-                                        <form id="delete-form-{{ $post->id }}" action="{{ route('post.destroy', $post->id) }}" method="post" style="display: none">
-                                            @csrf @method("DELETE")
 
-                                        </form>
+                                    @can('posts.update', Auth::user())
+                                        <td><a href="{{ route('post.edit', $post->id) }}" class="fa fa-pencil" aria-hidden="true"></a></td>
+                                    @endcan
 
-                                        <a href="" onclick="
-                                        if(confirm('Are you sure, You Want to delete this?'))
-                                        {
-                                            event.preventDefault();
-                                            document.getElementById('delete-form-{{ $post->id }}').submit();
-                                        }
-                                        else{
-                                            event.preventDefault();
-                                        }">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </a>
-                                    </td>
+                                    @can('posts.delete', Auth::user())
+                                        <td>
+                                            <form id="delete-form-{{ $post->id }}" action="{{ route('post.destroy', $post->id) }}" method="post" style="display: none">
+                                                @csrf @method("DELETE")
+
+                                            </form>
+
+                                            <a href="" onclick="
+                                                if(confirm('Are you sure, You Want to delete this?'))
+                                                {
+                                                    event.preventDefault();
+                                                    document.getElementById('delete-form-{{ $post->id }}').submit();
+                                                }
+                                                else{
+                                                    event.preventDefault();
+                                                }">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    @endcan
                                 </tr>
 
                                 @empty
@@ -93,8 +106,14 @@
                                     <th>Sub Title</th>
                                     <th>Slug</th>
                                     <th>Create At</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+
+                                    @can('posts.update', Auth::user())
+                                        <th>Edit</th>
+                                    @endcan
+
+                                    @can('posts.delete', Auth::user())
+                                        <th>Delete</th>
+                                    @endcan
                                 </tr>
                             </tfoot>
                         </table>
