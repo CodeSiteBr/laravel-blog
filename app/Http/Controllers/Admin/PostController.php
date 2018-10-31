@@ -10,6 +10,11 @@ use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +48,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'title' => 'required',
             'subtitle' => 'required',
             'slug' => 'required',
@@ -51,7 +56,7 @@ class PostController extends Controller
             'image' => 'required',
             ]);
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $imageName = $request->image->store('public');
         }
 
@@ -69,8 +74,7 @@ class PostController extends Controller
         $post->tags()->sync($request->tags);
         $post->categories()->sync($request->categories);
 
-        return redirect(route('post.index'));
-
+        return redirect(route('post.index'))->with('success', 'Post created successfully');
     }
 
     /**
@@ -81,7 +85,6 @@ class PostController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**
@@ -108,7 +111,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'title'     => 'required',
             'subtitle'  => 'required',
             'slug'      => 'required',
@@ -116,7 +119,7 @@ class PostController extends Controller
             'image'     => 'required',
         ]);
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $imageName = $request->image->store('public');
         }
 
@@ -134,7 +137,7 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect(route('post.index'));
+        return redirect(route('post.index'))->with('success', 'Post updated successfully');
     }
 
     /**
@@ -145,7 +148,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        post::where('id',$id)->delete();
-        return redirect()->back();
+        post::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Post deleted successfully');
     }
 }

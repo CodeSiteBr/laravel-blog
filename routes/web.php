@@ -1,7 +1,7 @@
 <?php
 
 // User Routes
-Route::group(['namespace' => 'User'], function(){
+Route::group(['namespace' => 'User'], function () {
     Route::get('/', 'HomeController@index');
     Route::get('post', 'HomeController@index');
 
@@ -12,12 +12,18 @@ Route::group(['namespace' => 'User'], function(){
 });
 
 // Admin Routes
-Route::group(['namespace' => 'Admin'], function(){
+Route::group(['namespace' => 'Admin'], function () {
     Route::get('admin', 'HomeController@index')->name('admin.home');
     Route::get('admin/home', 'HomeController@index')->name('admin.home');
 
     // User routes
     Route::resource('admin/user', 'UserController');
+
+    // Role routes
+    Route::resource('admin/role', 'RoleController');
+
+    // Permission routes
+    Route::resource('admin/permission', 'PermissionController');
 
     // Post routes
     Route::resource('admin/post', 'PostController');
@@ -27,6 +33,10 @@ Route::group(['namespace' => 'Admin'], function(){
 
     // Category routes
     Route::resource('admin/category', 'CategoryController');
+
+    // Admin Auth Routes
+    Route::get('admin-login', 'Auth\LoginController@showLoginForm')->name('admin.login');
+    Route::post('admin-login', 'Auth\LoginController@login');
 });
 
 Auth::routes();

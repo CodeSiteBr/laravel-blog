@@ -9,6 +9,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
+
         @include('admin.layouts.pagehead')
 
         <ol class="breadcrumb">
@@ -24,9 +25,9 @@
         <!-- Default box -->
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">Tags</h3>
+                <h3 class="box-title">permissions</h3>
 
-                <a class="col-lg-offset-5 btn btn-success" href="{{ route('tag.create') }}">Add new Tag</a>
+                <a class="col-lg-offset-5 btn btn-success" href="{{ route('permission.create') }}">Add new Permission</a>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -46,30 +47,31 @@
                             <thead>
                                 <tr>
                                     <th>S.No</th>
-                                    <th>Tag Name</th>
-                                    <th>Slug</th>
+                                    <th>Permission name</th>
+                                    <th>Permission for</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($tags as $tag)
+                                @forelse ($permissions as $permission)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ $tag->name}}</td>
-                                    <td>{{ $tag->slug}}</td>
-                                    <td><a href="{{ route('tag.edit', $tag->id) }}" class="fa fa-pencil" aria-hidden="true"></a></td>
+                                    <td>{{ $permission->name}}</td>
+                                    <td>{{ $permission->for}}</td>
                                     <td>
-                                        <form id="delete-form-{{ $tag->id }}" action="{{ route('tag.destroy', $tag->id) }}" method="post" style="display: none">
+                                        <a href="{{ route('permission.edit', $permission->id) }}" class="fa fa-pencil" aria-hidden="true"></a></td>
+                                    <td>
+                                        <form id="delete-form-{{ $permission->id }}" action="{{ route('permission.destroy',                     $permission->id) }}"
+                                            method="post" style="display: none">
                                             @csrf @method("DELETE")
-
                                         </form>
 
                                         <a href="" onclick="
                                         if(confirm('Are you sure, You Want to delete this?'))
                                         {
                                             event.preventDefault();
-                                            document.getElementById('delete-form-{{ $tag->id }}').submit();
+                                            document.getElementById('delete-form-{{ $permission->id }}').submit();
                                         }
                                         else{
                                             event.preventDefault();
@@ -85,8 +87,8 @@
                             <tfoot>
                                 <tr>
                                     <th>S.No</th>
-                                    <th>Tag Name</th>
-                                    <th>Slug</th>
+                                    <th>Permission name</th>
+                                    <th>Permission for</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -117,5 +119,6 @@
     $(function () {
         $("#example1").DataTable();
     });
+
 </script>
 @endsection

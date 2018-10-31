@@ -4,7 +4,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-    @include('admin.layouts.pagehead')
+        @include('admin.layouts.pagehead')
 
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -20,32 +20,27 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Titles</h3>
+                        <h3 class="box-title">Permissions</h3>
                     </div>
-    @include('includes.messages')
+
+                    @include('includes.messages')
 
                     <!-- form start -->
-                    <form role="form" action="{{ route('tag.update', $tag->id) }}" method="post">
+                    <form role="form" action="{{ route('permission.update', $permission->id) }}" method="post">
                         @csrf @method("PUT")
 
                         <div class="box-body">
 
                             <div class="col-lg-offset-3 col-lg-6">
                                 <div class="form-group">
-                                    <label for="name">Tag title</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Tag title"
-                                    value="{{ $tag->name }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="slug">Tag slug</label>
-                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug"
-                                    value="{{ $tag->slug }}">
+                                    <label for="name">Permission</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Permission"
+                                    value="{{ $permission->name }}">
                                 </div>
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Submit</button>
-                                    <a href="{{ route('tag.index') }}" class="btn btn-default">Back</a>
+                                    <a href="{{ route('permission.index') }}" class="btn btn-default">Back</a>
                                 </div>
                             </div>
 

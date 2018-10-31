@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +53,7 @@ class CategoryController extends Controller
         $category->slug = $request->slug;
         $category->save();
 
-        return redirect(route('category.index'));
+        return redirect(route('category.index'))->with('success', 'Category created successfully');
     }
 
     /**
@@ -93,7 +98,7 @@ class CategoryController extends Controller
         $category->slug = $request->slug;
         $category->save();
 
-        return redirect(route('category.index'));
+        return redirect(route('category.index'))->with('success', 'Category updated successfully');
     }
 
     /**
@@ -105,6 +110,6 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         category::where('id', $id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Category deleted successfully');
     }
 }

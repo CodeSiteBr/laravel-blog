@@ -9,8 +9,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        @include('admin.layouts.pagehead')
-
+    @include('admin.layouts.pagehead')
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Examples</a></li>
@@ -24,9 +23,9 @@
         <!-- Default box -->
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">Tags</h3>
+                <h3 class="box-title">Roles</h3>
 
-                <a class="col-lg-offset-5 btn btn-success" href="{{ route('tag.create') }}">Add new Tag</a>
+                <a class="col-lg-offset-5 btn btn-success" href="{{ route('role.create') }}">Add new Role</a>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -46,21 +45,19 @@
                             <thead>
                                 <tr>
                                     <th>S.No</th>
-                                    <th>Tag Name</th>
-                                    <th>Slug</th>
+                                    <th>Role Name</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($tags as $tag)
+                                @forelse ($roles as $role)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ $tag->name}}</td>
-                                    <td>{{ $tag->slug}}</td>
-                                    <td><a href="{{ route('tag.edit', $tag->id) }}" class="fa fa-pencil" aria-hidden="true"></a></td>
+                                    <td>{{ $role->name}}</td>
+                                    <td><a href="{{ route('role.edit', $role->id) }}" class="fa fa-pencil" aria-hidden="true"></a></td>
                                     <td>
-                                        <form id="delete-form-{{ $tag->id }}" action="{{ route('tag.destroy', $tag->id) }}" method="post" style="display: none">
+                                        <form id="delete-form-{{ $role->id }}" action="{{ route('role.destroy', $role->id) }}" method="post" style="display: none">
                                             @csrf @method("DELETE")
 
                                         </form>
@@ -69,7 +66,7 @@
                                         if(confirm('Are you sure, You Want to delete this?'))
                                         {
                                             event.preventDefault();
-                                            document.getElementById('delete-form-{{ $tag->id }}').submit();
+                                            document.getElementById('delete-form-{{ $role->id }}').submit();
                                         }
                                         else{
                                             event.preventDefault();
@@ -85,8 +82,7 @@
                             <tfoot>
                                 <tr>
                                     <th>S.No</th>
-                                    <th>Tag Name</th>
-                                    <th>Slug</th>
+                                    <th>Role Name</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -117,5 +113,6 @@
     $(function () {
         $("#example1").DataTable();
     });
+
 </script>
 @endsection
