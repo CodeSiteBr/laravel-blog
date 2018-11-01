@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 {{-- Categories --}}
-                <small>{{ __('Created at') }} {{ $post->created_at->diffForHumans() }}</small> @foreach ($post->categories
+                <small>{{ __('Created at') }} {{ $post->created_at }}</small> @foreach ($post->categories
                 as $category)
                 <small class="float-right" style="margin-right: 20px;">
                             <a href="{{ route('category', $category->slug) }}">{{ $category->name }}</a>

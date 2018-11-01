@@ -13886,31 +13886,36 @@ module.exports = __webpack_require__(43);
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 __webpack_require__(13);
 
 window.Vue = __webpack_require__(36);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+Vue.component('posts', __webpack_require__(39));
 
-Vue.component('example-component', __webpack_require__(39));
+var url = window.location.href;
+var pageNumber = url.split('=')[1];
 
 var app = new Vue({
-  el: '#app'
+    el: '#app',
+    data: {
+        blog: {}
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.post('/getPosts', {
+            'page': pageNumber
+        }).then(function (response) {
+            _this.blog = response.data.data;
+            // console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
 });
 
 $(document).ready(function () {
-  console.log("ready!");
+    console.log("ready!");
 });
 
 /***/ }),
@@ -13992,7 +13997,7 @@ if (token) {
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.10';
+  var VERSION = '4.17.11';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
@@ -14256,7 +14261,7 @@ if (token) {
   var reHasUnicode = RegExp('[' + rsZWJ + rsAstralRange  + rsComboRange + rsVarRange + ']');
 
   /** Used to detect strings that need a more robust regexp to match words. */
-  var reHasUnicodeWord = /[a-z][A-Z]|[A-Z]{2,}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
+  var reHasUnicodeWord = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
 
   /** Used to assign default `context` object properties. */
   var contextProps = [
@@ -15202,20 +15207,6 @@ if (token) {
       }
     }
     return result;
-  }
-
-  /**
-   * Gets the value at `key`, unless `key` is "__proto__".
-   *
-   * @private
-   * @param {Object} object The object to query.
-   * @param {string} key The key of the property to get.
-   * @returns {*} Returns the property value.
-   */
-  function safeGet(object, key) {
-    return key == '__proto__'
-      ? undefined
-      : object[key];
   }
 
   /**
@@ -17675,7 +17666,7 @@ if (token) {
           if (isArguments(objValue)) {
             newValue = toPlainObject(objValue);
           }
-          else if (!isObject(objValue) || (srcIndex && isFunction(objValue))) {
+          else if (!isObject(objValue) || isFunction(objValue)) {
             newValue = initCloneObject(srcValue);
           }
         }
@@ -20596,6 +20587,22 @@ if (token) {
         array[length] = isIndex(index, arrLength) ? oldArray[index] : undefined;
       }
       return array;
+    }
+
+    /**
+     * Gets the value at `key`, unless `key` is "__proto__".
+     *
+     * @private
+     * @param {Object} object The object to query.
+     * @param {string} key The key of the property to get.
+     * @returns {*} Returns the property value.
+     */
+    function safeGet(object, key) {
+      if (key == '__proto__') {
+        return;
+      }
+
+      return object[key];
     }
 
     /**
@@ -47208,7 +47215,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/ExampleComponent.vue"
+Component.options.__file = "resources/js/components/posts.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47217,9 +47224,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-299e239e", Component.options)
+    hotAPI.createRecord("data-v-595a99d0", Component.options)
   } else {
-    hotAPI.reload("data-v-299e239e", Component.options)
+    hotAPI.reload("data-v-595a99d0", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -47360,10 +47367,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
+    props: ['title', 'subtitle', 'created_at', 'postId'],
+    methods: {
+        likeIt: function likeIt() {
+            axios.post('/saveLike', {
+                id: this.postId
+            }).then(function (response) {
+                // this.blog = response.data.data
+                console.log(response);
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+            console.log('hello');
+        }
     }
 });
 
@@ -47375,38 +47397,44 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
+  return _c("div", { staticClass: "post-preview" }, [
+    _c("a", { attrs: { href: "slug" } }, [
+      _c("h2", { staticClass: "post-title" }, [_vm._v(_vm._s(_vm.title))]),
+      _vm._v(" "),
+      _c("h3", { staticClass: "post-subtitle" }, [_vm._v(_vm._s(_vm.subtitle))])
+    ]),
+    _vm._v(" "),
+    _c("p", { staticClass: "post-meta" }, [
+      _vm._v("\n        Posted by "),
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Start Bootstrap")]),
+      _vm._v("\n\n        " + _vm._s(_vm.created_at) + "\n\n        "),
+      _c(
+        "a",
+        {
+          attrs: { href: "" },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.likeIt($event)
+            }
+          }
+        },
+        [
+          _c("small", [_vm._v("0")]),
+          _vm._v(" "),
+          _c("i", { staticClass: "fa fa-thumbs-up" })
+        ]
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-299e239e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-595a99d0", module.exports)
   }
 }
 
